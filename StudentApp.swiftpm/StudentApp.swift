@@ -11,7 +11,23 @@ import SwiftUI
 struct StudentAppApp: App {
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            RootView()
         }
     }
 }
+private struct RootView: View {
+    @State private var didStart = false
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if didStart {
+                    TreeDashboardView()
+                } else {
+                    WelcomeView(onStart: { didStart = true })
+                }
+            }
+        }
+    }
+}
+
